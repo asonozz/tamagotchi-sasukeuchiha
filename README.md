@@ -1,10 +1,12 @@
 # 🐍 Sasuke Uchiha — Virtual Pet
 
-> *“Meu objetivo não é ser um Hokage. Tenho uma ambição que não posso abandonar.”*
+<div align="center">
 
-Um pequeno **Tamagotchi inspirado no Sasuke Uchiha**, desenvolvido com Arduino e um display OLED.
+“Meu objetivo não é ser um Hokage. Tenho uma ambição que não posso abandonar.”
 
-O projeto transforma um Arduino em um bichinho virtual que possui diferentes estados, reage aos botões e emite sons de acordo com seu humor.
+Um pequeno Tamagotchi inspirado no Sasuke Uchiha, feito com Arduino.
+
+</div>
 
 ## 🖥️ Sobre o projeto
 
