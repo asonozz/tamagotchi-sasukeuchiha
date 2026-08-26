@@ -62,14 +62,14 @@ Os rostos do Sasuke são armazenados como bitmaps e carregados no display de aco
 ## 📁 Estrutura
 
 ```text
-virtual-pet-arduino/
+tamagotchi-sasukeuchiha/
 │
-├── virtual_pet.ino
+├── Sasuke-Uchiha.ino
 ├── bitmaps.h
 └── README.md
 ```
 
-`Ssuke-Uchiha.ino` → código principal do Tamagotchi
+`Sasuke-Uchiha.ino` → código principal do Tamagotchi
 `bitmaps.h` → desenhos dos diferentes estados do Sasuke
 `README.md` → documentação do projeto
 
