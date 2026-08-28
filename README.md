@@ -19,6 +19,12 @@ O Sasuke possui quatro estados:
 
 Cada estado possui uma expressão diferente no display OLED e um som específico emitido pelo buzzer.
 
+## 📖 Development
+
+Quer acompanhar a evolução do Sasuke?
+
+[→ Leia o Development Log](DEVLOG.md)
+
 ## ⚡ Como funciona
 
 O Sasuke fica inicialmente **feliz**.
