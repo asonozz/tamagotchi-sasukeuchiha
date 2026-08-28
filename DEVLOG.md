@@ -80,48 +80,6 @@ As duas coisas fazem parte do processo.
 
 ---
 
-## 📸 Project Diary
-
-### The beginning
-
-O projeto começou com uma ideia relativamente simples:
-
-> **"E se a gente fizesse um Tamagotchi usando Arduino?"**
-
-Daí vieram o OLED, os botões, o buzzer, os bitmaps e, eventualmente, um Sasuke inteiro vivendo dentro de uma pequena placa.
-
-[📷 adicionar foto aqui]
-
----
-
-### The first prototype
-
-[📷 adicionar foto do primeiro protótipo]
-
-O primeiro protótipo ainda era bem diferente da versão atual.
-
-Foi aqui que começamos a descobrir como transformar a ideia em algo que realmente pudesse funcionar fisicamente.
-
----
-
-### Current build
-
-[📷 adicionar foto da versão atual]
-
-O Sasuke atualmente consegue:
-
-* comer
-* brincar
-* dormir
-* mudar de estado
-* demonstrar diferentes emoções
-* interagir através dos botões
-* exibir suas expressões no OLED
-
-E isso é só o começo.
-
----
-
 ## 🧠 Things We Learned
 
 Cada atualização também deixa alguma coisa para trás.
