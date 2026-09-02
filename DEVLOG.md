@@ -4,24 +4,118 @@
 
 Este é o diário de desenvolvimento do **Sasuke Uchiha**, um Tamagotchi feito com Arduino.
 
-Aqui ficam registradas as atualizações, testes, descobertas, ideias e mudanças que acontecem durante a construção do projeto.
+Aqui ficam registradas as atualizações, testes, descobertas, ideias e mudanças que acontecem durante o desenvolvimento.
 
-O README principal apresenta o projeto.
+O README apresenta o projeto.
 Este aqui conta a história de como ele está sendo construído.
 
 ---
 
 ## 📖 Development Log
 
-### `28.08.2026` — Bluetooth entrou para a conversa
+### `02.09.2026` — Atualizando o Tamagotchi do Sasuke
 
-O Sasuke começou como um pequeno Tamagotchi rodando diretamente no Arduino, mas a ideia nunca foi deixar ele parado por aí.
+Depois de mexer um pouco no código, o Tamagotchi do Sasuke recebeu algumas mudanças bem legais.
 
-A próxima etapa do projeto é fazer com que ele consiga **se comunicar com o mundo externo**.
+Na versão antiga, ele tinha quatro estados: **Feliz, Com Fome, Triste e Dormindo**.
 
-A proposta é adicionar comunicação via **Bluetooth**, permitindo que um celular ou computador consiga receber informações sobre o estado do Sasuke e, futuramente, também interagir com ele.
+Agora entrou mais um:
 
-A ideia é transformar o projeto em algo mais próximo de um pequeno sistema IoT:
+**Com Raiva. 😡**
+
+A sequência ficou:
+
+**Feliz → Com Fome → Triste → Com Raiva**
+
+Cada mudança acontece depois de 10 segundos caso o jogador não interaja com ele. Então, se ninguém cuidar do Sasuke, ele vai ficando cada vez mais irritado KKKKK.
+
+### 😡 Novo estado: COM_RAIVA
+
+A principal novidade foi adicionar o `COM_RAIVA`.
+
+Além do novo bitmap, ele também ganhou um som próprio. Quando o Sasuke fica com raiva, o buzzer faz **5 bips rápidos**.
+
+Para acalmar o Sasuke, basta interagir com ele através dos botões.
+
+### 🖥️ Código mais organizado
+
+Também aproveitei a atualização para dar uma organizada no código.
+
+Antes, a parte responsável por atualizar o display ficava diretamente dentro do `loop()`.
+
+Agora existe uma função própria:
+
+```cpp
+atualizarTela()
+```
+
+Ela fica responsável por mostrar o bitmap correspondente ao estado atual.
+
+Também atualizei os nomes dos bitmaps para deixar mais claro que eles pertencem ao Sasuke:
+
+```text
+bitmapSasukeFeliz
+bitmapSasukeComFome
+bitmapSasukeTriste
+bitmapSasukeDormindo
+bitmapSasukeRaiva
+```
+
+Outra melhoria foi fazer com que o display só seja atualizado quando o estado realmente muda, em vez de redesenhar a mesma imagem o tempo todo.
+
+### 🔊 Sons
+
+Cada estado possui uma resposta diferente do buzzer:
+
+* 😄 Feliz → 1 bip
+* 🍜 Com fome → 2 bips
+* 😢 Triste → 3 bips
+* 😡 Com raiva → 5 bips rápidos
+* 😴 Dormindo → 1 bip longo
+
+Assim, além de ver o que está acontecendo no OLED, também dá para perceber as mudanças pelos sons.
+
+### 🔧 Pequenas melhorias
+
+Também mudei o botão de brincar do **pino 7 para o pino 3**.
+
+Outra mudança foi adicionar uma verificação na inicialização do OLED. Se o display não conseguir iniciar, o Arduino avisa pelo Serial Monitor.
+
+Pequenas coisas, mas que deixam o projeto um pouco mais organizado e fácil de testar.
+
+---
+
+## 🔋 Funcionando com bateria
+
+O Sasuke também ganhou uma mudança importante no hardware: **agora ele pode ser alimentado por bateria**.
+
+Antes, o Tamagotchi dependia da conexão com o PC para funcionar. Agora ele pode funcionar de forma independente, sem precisar ficar preso ao cabo USB.
+
+Isso é importante principalmente pensando nos próximos passos do projeto.
+
+E por falar nisso...
+
+### 👀 Bluetooth entrou para a conversa
+
+Com o projeto funcionando de forma mais independente, começou a surgir uma ideia:
+
+**e se o Sasuke pudesse conversar com outros dispositivos?**
+
+A próxima grande etapa é explorar a comunicação via **Bluetooth**, permitindo que o Tamagotchi possa futuramente se comunicar com um celular ou computador.
+
+A ideia é, aos poucos, levar o projeto para algo mais próximo de um pequeno sistema IoT.
+
+Ainda não chegamos lá, mas o terreno já está sendo preparado.
+
+---
+
+### `28.08.2026` — A ideia do Bluetooth
+
+Antes mesmo de começar a implementação, o Bluetooth já tinha entrado nos planos do projeto.
+
+A ideia inicial é fazer com que o Sasuke consiga se comunicar com o mundo externo, podendo futuramente enviar informações para uma aplicação web ou mobile.
+
+Algo nessa direção:
 
 ```text
         ┌──────────────┐
@@ -38,96 +132,11 @@ A ideia é transformar o projeto em algo mais próximo de um pequeno sistema IoT
         └──────────────┘
 ```
 
-Ainda estamos descobrindo qual será a melhor forma de fazer essa comunicação e quais informações realmente fazem sentido enviar.
+Ainda estamos descobrindo qual será a melhor forma de fazer essa comunicação e o que realmente vale a pena adicionar.
 
-Por enquanto, a missão é simples:
+Por enquanto:
 
 **fazer o Sasuke falar com algo além do próprio OLED.**
-
----
-
-# `02.09.2026` - Atualizando o Tamagotchi do Sasuke
-
-Depois de mexer um pouco no código, o Tamagotchi do Sasuke recebeu algumas mudanças bem legais.
-
-Na versão antiga, ele tinha só 4 estados: **Feliz, Com Fome, Triste e Dormindo**. A ideia era que, com o passar do tempo, ele fosse ficando cada vez pior caso o jogador não interagisse com ele.
-
-Agora coloquei mais um estado: **Com Raiva** 😡
-
-A sequência ficou:
-
-**Feliz → Com Fome → Triste → Com Raiva**
-
-Cada estado demora 10 segundos para passar para o próximo. Então, se ninguém cuidar dele, eventualmente o Sasuke fica com raiva KKKKK.
-
-### 😡 Novo estado de raiva
-
-A principal mudança foi justamente adicionar o `COM_RAIVA`.
-
-Além do novo bitmap, também fiz um som diferente para ele. Agora, quando entra nesse estado, o buzzer faz **5 bips rápidos**, enquanto os outros estados continuam tendo seus próprios sons.
-
-E para acalmar o Sasuke, é só apertar **alimentar ou brincar**, que ele volta a ficar feliz.
-
-### 🖥️ Dei uma organizada no código
-
-Também aproveitei a atualização para organizar um pouco melhor o código.
-
-Antes, a parte que desenhava os bitmaps ficava diretamente dentro do `loop()`. Agora criei uma função chamada `atualizarTela()`, que fica responsável por mostrar o desenho certo de acordo com o estado atual.
-
-Também troquei os nomes dos bitmaps para ficar mais fácil de entender que são os desenhos do Sasuke:
-
-`bitmapSasukeFeliz`
-`bitmapSasukeComFome`
-`bitmapSasukeTriste`
-`bitmapSasukeDormindo`
-`bitmapSasukeRaiva`
-
-🔋 Agora ele também funciona com bateria
-
-Outra mudança que fizemos foi colocar uma bateria no projeto.
-
-Antes, o Tamagotchi precisava ficar conectado ao PC para funcionar. Agora ele consegue ser alimentado pela bateria, então não ficamos mais presos ao cabo USB.
-
-Isso também abre caminho para uma próxima atualização que queremos fazer: Bluetooth 👀
-
-A ideia é que, no futuro, o Tamagotchi consiga se comunicar sem precisar estar conectado diretamente ao computador. Então essa mudança da bateria acaba sendo um dos primeiros passos para deixar o projeto realmente mais independente.
-
-Ainda não chegamos no Bluetooth, mas já estamos preparando o terreno. 🚀
-
-### 🔊 Sons
-
-Cada estado tem um som diferente:
-
-* 😄 Feliz → 1 bip
-* 🍜 Com fome → 2 bips
-* 😢 Triste → 3 bips
-* 😡 Com raiva → 5 bips rápidos
-* 😴 Dormindo → 1 bip longo
-
-Assim dá até pra saber que o estado mudou sem precisar ficar olhando o display.
-
-### ⚙️ Outra mudança importante
-
-Também mudei o botão de brincar do **pino 7 para o pino 3**.
-
-E coloquei uma verificação na inicialização do OLED. Se o display não iniciar corretamente, ele avisa no Serial Monitor em vez de simplesmente ficar sem funcionar e eu ficar tentando descobrir o que aconteceu KKKKK.
-
-Outra coisa que mudou foi a atualização da tela. Antes ela era redesenhada toda hora dentro do `loop()`. Agora só atualizo o display quando o estado realmente muda.
-
-No geral, a ideia continua a mesma, mas agora o Sasuke tem mais personalidade e o código ficou um pouco mais organizado.
-
-E obviamente a maior preocupação agora é:
-
-**não deixar o Sasuke ficar com raiva. 😭**
-
-
-### `Coming soon` — Primeiros testes
-
-> Em breve...
-
-Aqui serão registrados os primeiros testes de comunicação, problemas encontrados, soluções e tudo aquilo que inevitavelmente dá errado antes de funcionar.
-
-Porque, aparentemente, nenhum projeto Arduino começa funcionando de primeira.
 
 ---
 
@@ -135,43 +144,42 @@ Porque, aparentemente, nenhum projeto Arduino começa funcionando de primeira.
 
 Nem tudo que aparece aqui necessariamente vai parar na versão final.
 
-Esta seção existe para guardar ideias, testes e experiências:
+Esta seção serve para guardar ideias, testes e coisas que queremos experimentar:
 
 * Bluetooth
 * Comunicação com celular
 * Dashboard para acompanhar o Sasuke
-* Notificações sobre o estado do pet
+* Notificações
 * Interação remota
 * Novos sensores
 * Novas animações
 * Novos estados
-* Melhorias no sistema de necessidades
 
 Algumas ideias vão funcionar.
 
-Outras provavelmente vão explodir.
+Outras provavelmente vão dar errado.
 
-As duas coisas fazem parte do processo.
+As duas coisas fazem parte do processo. KKKKK.
 
 ---
 
 ## 🧠 Things We Learned
 
-Cada atualização também deixa alguma coisa para trás.
+Até agora, o projeto ajudou a colocar em prática coisas como:
 
-Até agora:
+* trabalhar com displays OLED;
+* utilizar comunicação I2C;
+* criar e utilizar bitmaps;
+* trabalhar com botões e entradas digitais;
+* utilizar estados no Arduino;
+* controlar eventos através de tempo;
+* organizar o projeto em diferentes arquivos;
+* integrar hardware e software;
+* transformar uma ideia em um protótipo físico.
 
-* trabalhar com displays OLED
-* utilizar comunicação I2C
-* criar e utilizar bitmaps
-* controlar entradas através de botões
-* trabalhar com estados dentro do Arduino
-* organizar um projeto em diferentes arquivos
-* transformar uma ideia em um protótipo físico
+E a próxima lição provavelmente vai ser:
 
-A próxima lição:
-
-**fazer dois dispositivos conversarem.**
+**fazer dois dispositivos conversarem. 👀**
 
 ---
 
@@ -186,6 +194,8 @@ A próxima lição:
 ### `✓` Interações
 
 ### `✓` Bitmaps
+
+### `✓` Alimentação por bateria
 
 ### `○` Comunicação Bluetooth
 
@@ -207,15 +217,13 @@ A próxima lição:
 
 O Sasuke não começou perfeito.
 
-Ele começou como uma ideia, virou código, depois virou circuito e, aos poucos, começou a parecer com um pequeno personagem de verdade.
+Começou como uma ideia, virou código, depois virou circuito e, aos poucos, começou a parecer com um pequeno personagem de verdade.
 
 Este diário existe para guardar justamente essa evolução.
 
 Não só o resultado final.
 
 **Mas tudo que aconteceu até chegar nele.**
-
----
 
 <p align="center">
 
