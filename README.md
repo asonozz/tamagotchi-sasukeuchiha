@@ -10,33 +10,21 @@ Um pequeno Tamagotchi inspirado no Sasuke Uchiha, feito com Arduino.
 
 🖥️ Sobre o projeto
 
-O Sasuke Uchiha — Virtual Pet é um Tamagotchi feito com Arduino, inspirado no personagem Sasuke Uchiha.
+O Sasuke Uchiha — Virtual Pet é um projeto de Tamagotchi inspirado no personagem Sasuke Uchiha, desenvolvido utilizando Arduino.
 
-A ideia é transformar o Arduino em um pequeno pet virtual, juntando programação, eletrônica e interação física em um único projeto.
+A proposta é criar um pequeno pet virtual unindo programação, eletrônica e criatividade, transformando um projeto de aprendizado em algo que possa continuar crescendo e ganhando novas ideias.
 
-O Tamagotchi utiliza botões para interação, um display OLED para a parte visual e um buzzer para respostas sonoras.
+O projeto está em constante desenvolvimento e seu funcionamento pode mudar conforme novas versões são criadas.
 
-O projeto continua em desenvolvimento e novas funcionalidades podem ser adicionadas com o tempo.
+🎯 Objetivo
 
-⚙️ Como funciona
+O projeto foi criado como uma forma prática de aprender e experimentar conceitos de programação e eletrônica.
 
-O Arduino é responsável por controlar toda a lógica do Tamagotchi.
+A ideia é desenvolver algo do zero, testar diferentes possibilidades e aprender com cada etapa do processo.
 
-As ações feitas pelos botões são processadas pelo código, que controla o comportamento do personagem e as respostas do display e do buzzer.
+Mais do que chegar a uma versão final, o objetivo é acompanhar a evolução do projeto e continuar experimentando.
 
-O display OLED mostra as informações e gráficos do projeto, enquanto o buzzer é utilizado para os feedbacks sonoros.
-
-O projeto também pode funcionar utilizando bateria, permitindo que o Tamagotchi não dependa de uma conexão com o computador.
-
-🔧 Componentes
-Arduino
-Display OLED 128×64
-Botões
-Buzzer ativo
-Protoboard
-Jumpers
-Bateria
-💻 Tecnologias
+🧠 Tecnologias
 Arduino
 C++
 I2C
@@ -51,24 +39,26 @@ tamagotchi-sasukeuchiha/
 ├── DEVLOG.md
 └── README.md
 
-Sasuke-Uchiha.ino → código principal
-bitmaps.h → desenhos utilizados no projeto
+Sasuke-Uchiha.ino → código principal do projeto
+bitmaps.h → recursos gráficos
 DEVLOG.md → histórico de desenvolvimento
-README.md → documentação
+README.md → documentação do projeto
 
 📖 Development
 
-Quer acompanhar o projeto e ver o que foi mudando ao longo do desenvolvimento?
+Quer acompanhar a evolução do projeto?
 
 → Leia o Development Log
 
-Lá ficam registradas as atualizações, testes, mudanças no código e novas funcionalidades.
+O DEVLOG reúne as atualizações, mudanças, testes e novas ideias que aparecem durante o desenvolvimento.
 
-🌱 Objetivo
+🌱 Em desenvolvimento
 
-Esse projeto foi criado como uma forma prática de aprender Arduino, programação e eletrônica, colocando diferentes conceitos em prática através de algo que pudesse continuar evoluindo.
+O projeto ainda está sendo desenvolvido e pode receber diversas mudanças ao longo do tempo.
 
-A ideia é ir adicionando novas funcionalidades e deixar o Sasuke cada vez mais completo.
+Novas ideias podem surgir, funcionalidades podem ser modificadas e partes do projeto podem ser refeitas.
+
+E é justamente essa a graça.
 
 Pequeno projeto, grande responsabilidade.
 
